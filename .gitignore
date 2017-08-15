@@ -1,0 +1,12 @@
+.idea
+.iml
+.settings
+build/*
+*/target/*
+target
+.settings/*
+.classpath
+.project
+*.iml
+src/main/webapp/META-INF
+External Libraries
