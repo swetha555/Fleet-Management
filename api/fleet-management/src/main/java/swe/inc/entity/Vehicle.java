@@ -1,8 +1,22 @@
 package swe.inc.entity;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+
+//@NamedQueries({
+//        @NamedQuery(name = "Vehicle.findAll",
+//                query = "SELECT Vehicle FROM Vehicle vehicle ORDER BY vehicle.year DESC"),
+//})
+@NamedQueries({
+        @NamedQuery(name="Vehicle.findAll", query = "select v from Vehicle v order by v.year desc "),
+})
 public class Vehicle {
 
     private String vin;
+
     private String make;
     private String model;
     private int year;
@@ -10,6 +24,19 @@ public class Vehicle {
     private double maxFuelVolume;
     private String lastServiceDate;
 
+    private List<Reading> readings;
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="vh")
+    public List<Reading> getReadings() {
+        return readings;
+    }
+
+    public void setReadings(List<Reading> readings) {
+        this.readings = readings;
+    }
+
+    @Id
+    @Column(columnDefinition = "VARCHAR(36)")
     public String getVin() {
         return vin;
     }
@@ -64,5 +91,18 @@ public class Vehicle {
 
     public void setLastServiceDate(String lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vin='" + vin + '\'' +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year='" + year + '\'' +
+                ", redlineRpm='" + redlineRpm + '\'' +
+                ", maxFuelVolume='" + maxFuelVolume + '\'' +
+                ", lastServiceDate='" + lastServiceDate + '\'' +
+                '}';
     }
 }

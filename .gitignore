@@ -8,5 +8,3 @@ target
 .classpath
 .project
 *.iml
-src/main/webapp/META-INF
-External Libraries

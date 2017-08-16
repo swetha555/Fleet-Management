@@ -2,6 +2,7 @@ package swe.inc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import swe.inc.entity.Vehicle;
 import swe.inc.exception.BadRequestException;
 import swe.inc.exception.ResourceNotFoundException;
@@ -14,10 +15,13 @@ import java.util.List;
 public class VehicleServiceImpl implements VehicleService{
     @Autowired
     VehicleRepository vehicleRepository;
+
+    @Transactional(readOnly = true)
     public List<Vehicle> findAll() {
         return vehicleRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Vehicle findOne(String vin) {
         Vehicle existing = vehicleRepository.findOne(vin);
         if(existing==null){
@@ -27,6 +31,7 @@ public class VehicleServiceImpl implements VehicleService{
         return existing;
     }
 
+    @Transactional
     public Vehicle create(Vehicle vehicle) {
         Vehicle existing = vehicleRepository.findOne(vehicle.getVin());
         if (existing != null) {
@@ -35,6 +40,7 @@ public class VehicleServiceImpl implements VehicleService{
         return vehicleRepository.create(vehicle);
     }
 
+    @Transactional
     public Vehicle update(String vin, Vehicle vehicle) {
         Vehicle existing = vehicleRepository.findOne(vin);
         if (existing == null) {
@@ -43,6 +49,7 @@ public class VehicleServiceImpl implements VehicleService{
         return vehicleRepository.update(vehicle);
     }
 
+    @Transactional
     public void delete(String vin) {
         Vehicle existing = vehicleRepository.findOne(vin);
         if (existing == null) {
