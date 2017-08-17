@@ -6,17 +6,12 @@ import java.util.Set;
 
 @Entity
 
-//@NamedQueries({
-//        @NamedQuery(name = "Vehicle.findAll",
-//                query = "SELECT Vehicle FROM Vehicle vehicle ORDER BY vehicle.year DESC"),
-//})
 @NamedQueries({
         @NamedQuery(name="Vehicle.findAll", query = "select v from Vehicle v order by v.year desc "),
 })
 public class Vehicle {
 
     private String vin;
-
     private String make;
     private String model;
     private int year;
@@ -26,7 +21,7 @@ public class Vehicle {
 
     private List<Reading> readings;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="vh")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="vh", fetch = FetchType.EAGER)
     public List<Reading> getReadings() {
         return readings;
     }

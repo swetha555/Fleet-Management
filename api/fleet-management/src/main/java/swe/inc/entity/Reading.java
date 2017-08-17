@@ -4,10 +4,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Reading.findAllForVin",
+                query = "SELECT r FROM swe.inc.entity.Reading r where r.vh.vin = :vin"),
+})
 public class Reading {
 
     private int readingId;
-
     private float latitude;
     private float longitude;
     private Timestamp timestamp;
@@ -16,9 +19,30 @@ public class Reading {
     private int engineHp;
     private boolean checkEngineLightOn;
     private boolean cruiseControlOn;
+    private boolean engineCoolantLow;
     private int engineRpm;
     private Vehicle vh;
     private Tires tires;
+    private boolean alert = false;
+    private  String alertMessage;
+
+
+    public boolean isAlert() {
+
+        return alert;
+    }
+
+    public void setAlert(boolean alert) {
+        this.alert = alert;
+    }
+
+    public String getAlertMessage() {
+        return alertMessage;
+    }
+
+    public void setAlertMessage(String alertMessage) {
+        this.alertMessage = alertMessage;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -121,5 +145,31 @@ public class Reading {
 
     public void setTires(Tires tires) {
         this.tires = tires;
+    }
+
+    @Override
+    public String toString() {
+        return "Reading{" +
+//                "vin='" + vin + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", fuelVolume='" + fuelVolume + '\'' +
+                ", speed='" + speed + '\'' +
+                ", engineHp='" + engineHp + '\'' +
+                ", checkEngineLightOn='" + checkEngineLightOn + '\'' +
+                ", engineCoolantLow='" + engineCoolantLow + '\'' +
+                ", cruiseControlOn='" + cruiseControlOn + '\'' +
+                ", engineRpm='" + engineRpm + '\'' +
+                ", tires='" + tires + '\'' +
+                '}';
+    }
+
+    public boolean isEngineCoolantLow() {
+        return engineCoolantLow;
+    }
+
+    public void setEngineCoolantLow(boolean engineCoolantLow) {
+        this.engineCoolantLow = engineCoolantLow;
     }
 }

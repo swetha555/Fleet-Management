@@ -15,6 +15,33 @@ public class JSONReadingVO {
         private int engineRpm;
         private Tires tires;
         private  String vin;
+        private boolean alert = false;
+        private String alertMessage;
+        private boolean engineCoolantLow;
+
+    public boolean isEngineCoolantLow() {
+        return engineCoolantLow;
+    }
+
+    public void setEngineCoolantLow(boolean engineCoolantLow) {
+        this.engineCoolantLow = engineCoolantLow;
+    }
+
+    public boolean isAlert() {
+        return alert;
+    }
+
+    public void setAlert(boolean alert) {
+        this.alert = alert;
+    }
+
+    public String getAlertMessage() {
+        return alertMessage;
+    }
+
+    public void setAlertMessage(String alertMessage) {
+        this.alertMessage = alertMessage;
+    }
 
     public String getVin() {
         return vin;

@@ -9,6 +9,8 @@ import swe.inc.exception.BadRequestException;
 import swe.inc.repository.ReadingRepository;
 import swe.inc.repository.VehicleRepository;
 
+import java.util.List;
+
 @Service
 public class ReadingServiceImpl implements ReadingService {
 
@@ -17,6 +19,16 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Autowired
     ReadingRepository readingRepository;
+
+    @Transactional(readOnly = true)
+    public List<Reading> findAll(String vin) {
+        Vehicle existing = vehicleRepository.findOne(vin);
+        if (existing == null) {
+            throw new BadRequestException("Vehicle with vin number " + vin + " does NOT already exist");
+        }
+        List<Reading> readings = readingRepository.getReadingsForVin(vin);
+        return readings;
+    }
 
     @Transactional
     public Reading create(Reading reading) {
@@ -27,4 +39,6 @@ public class ReadingServiceImpl implements ReadingService {
         //vehicleRepository.update(existing);
         return readingRepository.create(reading);
     }
+
+
 }
