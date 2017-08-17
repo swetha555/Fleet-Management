@@ -36,7 +36,6 @@ public class ReadingServiceImpl implements ReadingService {
         if (existing == null) {
             throw new BadRequestException("Vehicle with vin number " + reading.getVh().getVin() + " does NOT already exist");
         }
-        //vehicleRepository.update(existing);
         return readingRepository.create(reading);
     }
 

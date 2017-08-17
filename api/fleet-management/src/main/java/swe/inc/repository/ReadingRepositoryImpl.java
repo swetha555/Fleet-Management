@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class ReadingRepositoryImpl implements ReadingRepository{
@@ -23,8 +22,9 @@ public class ReadingRepositoryImpl implements ReadingRepository{
     public Reading findOne(int readingId) {
         return entityManager.find(Reading.class,readingId);
     }
-
+    
     public Reading create(Reading reading) {
+        //this will set alert message for speed more than 100
         if(reading.getSpeed() >= 100){
             reading.setAlert(true);
             reading.setAlertMessage("Driving too fast!!");

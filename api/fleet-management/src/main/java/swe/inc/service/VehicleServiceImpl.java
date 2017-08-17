@@ -7,8 +7,6 @@ import swe.inc.entity.Vehicle;
 import swe.inc.exception.BadRequestException;
 import swe.inc.exception.ResourceNotFoundException;
 import swe.inc.repository.VehicleRepository;
-
-import java.util.Arrays;
 import java.util.List;
 
 @Service

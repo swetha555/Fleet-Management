@@ -5,11 +5,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import swe.inc.entity.*;
-import swe.inc.service.ReadingService;
 import swe.inc.service.VehicleService;
 import java.util.List;
 
-@ComponentScan //can delete it
+@ComponentScan
 @RestController
 public class VehicleController {
 

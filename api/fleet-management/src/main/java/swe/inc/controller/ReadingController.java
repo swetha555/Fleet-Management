@@ -1,6 +1,5 @@
 package swe.inc.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
@@ -11,7 +10,7 @@ import swe.inc.service.ReadingService;
 import java.util.ArrayList;
 import java.util.List;
 
-@ComponentScan //can delete it
+@ComponentScan
 @RestController
 public class ReadingController {
 

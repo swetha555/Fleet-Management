@@ -18,22 +18,23 @@ import java.util.Properties;
 public class JPAConfig {
 
     @Bean
-   public LocalContainerEntityManagerFactoryBean emf(){
-       LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-       emf.setDataSource(getDataSource());
-       emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    public LocalContainerEntityManagerFactoryBean emf(){
+        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(getDataSource());
+        emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setPackagesToScan("swe.inc.entity");
 
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "create"); //In prod env we donot prefer to use "create-auto"
         properties.put("hibernate.show_sql", "true");
         emf.setJpaProperties(properties);
         return emf;
     }
 
+    //this bean will create vehicle_db with credentials of mysql given in the URL
     @Bean
-     public DataSource getDataSource(){
+    public DataSource getDataSource(){
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/vehicle_db?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");

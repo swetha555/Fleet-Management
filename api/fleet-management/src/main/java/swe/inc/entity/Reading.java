@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Reading.findAllForVin",
-                query = "SELECT r FROM swe.inc.entity.Reading r where r.vh.vin = :vin"),
+                query = "SELECT r FROM swe.inc.entity.Reading r where r.vh.vin = :vin")
 })
 public class Reading {
 
@@ -145,24 +145,6 @@ public class Reading {
 
     public void setTires(Tires tires) {
         this.tires = tires;
-    }
-
-    @Override
-    public String toString() {
-        return "Reading{" +
-//                "vin='" + vin + '\'' +
-                ", latitude='" + latitude + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", fuelVolume='" + fuelVolume + '\'' +
-                ", speed='" + speed + '\'' +
-                ", engineHp='" + engineHp + '\'' +
-                ", checkEngineLightOn='" + checkEngineLightOn + '\'' +
-                ", engineCoolantLow='" + engineCoolantLow + '\'' +
-                ", cruiseControlOn='" + cruiseControlOn + '\'' +
-                ", engineRpm='" + engineRpm + '\'' +
-                ", tires='" + tires + '\'' +
-                '}';
     }
 
     public boolean isEngineCoolantLow() {
